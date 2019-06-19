@@ -1,6 +1,7 @@
 import csv
 import codecs
 import re
+from clases import *
 
 
 def csv_dict_reader(file_obj):
@@ -18,13 +19,18 @@ def csv_dict_reader(file_obj):
         mainObjects1CName = re.match(r'- ',
                                      str(line["Уровень3"]))  # Ннаименование объектов системы начинается с символов "- "
 
+        if (re.match(r'Состав:', str(line["Уровень5"]))):  # Ннаименование объектов системы начинается с символов "- "
+            print(re.match(r'Состав:', str(line["Уровень5"])))
+
         if mainObjects1CName:
             # Собирает наименования состава объектов конфигурации как ключи и значения словаря как родителя
-            mainObjects1C[(str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')])] = hash('Конфигурация')
+            mainObjects1C[(str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')])] = MainObject1C(str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')], "Конфигурация", lineCounter)
 
-            # Собирает наименования объектов конфигурации как ключи и значения словаря как родителя
-            objects1C[(str(line["Уровень3"])[str(line["Уровень3"]).find('.') + 1:])] \
-                = hash(str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')])
+            objects1C[(str(line["Уровень3"])[str(line["Уровень3"]).find('.') + 1:])] = \
+                Object1C(
+                    str(line["Уровень3"])[str(line["Уровень3"]).find('.') + 1:],
+                    str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')],
+                    lineCounter)
 
     return mainObjects1C, objects1C
 
