@@ -1,4 +1,4 @@
-from graphviz import Digraph
+from graphviz import Digraph, Graph
 import dataPars
 import codecs
 
