@@ -19,8 +19,8 @@ def csv_dict_reader(file_obj):
         mainObjects1CName = re.match(r'- ',
                                      str(line["Уровень3"]))  # Ннаименование объектов системы начинается с символов "- "
 
-        if (str(line["Уровень4"])):  # пропарсить свойства объектов
-            print(str(line["Уровень4"]), lineCounter)
+        # if (str(line["Уровень4"])):  # пропарсить свойства объектов
+            # print(str(line["Уровень4"]), lineCounter)
 
         if mainObjects1CName:
             # Собирает наименования состава объектов конфигурации как ключи и значения словаря как родителя
@@ -31,7 +31,8 @@ def csv_dict_reader(file_obj):
                     str(line["Уровень3"])[str(line["Уровень3"]).find('.') + 1:],
                     str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')],
                     lineCounter)
-
+    for i in MainObject1C.objectList:
+        print (i.parent, i.name)
     return mainObjects1C, objects1C
 
 
