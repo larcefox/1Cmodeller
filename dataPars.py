@@ -31,8 +31,9 @@ def csv_dict_reader(file_obj):
                     str(line["Уровень3"])[str(line["Уровень3"]).find('.') + 1:],
                     str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')],
                     lineCounter)
-    for i in MainObject1C.objectList:
-        print (i.parent, i.name)
+    # for i in MainObject1C.objectList:
+        # print (i.parent, i.name)
+
     return mainObjects1C, objects1C
 
 

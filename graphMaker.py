@@ -2,7 +2,6 @@ from graphviz import Digraph, Graph
 import dataPars
 import codecs
 
-
 # dot = Graph(format='png', comment='The Round Table')
 #
 # dot.attr('node', shape = 'square', color = "red")
@@ -36,5 +35,7 @@ if __name__ == "__main__":
         dot.edge(list(objs1C.values())[countOfDictItems].hashParent, list(objs1C.values())[countOfDictItems].hashName,
                  arrowhead='vee')
 
-    print(dot.source)
+    # print(dot.source)
     dot.render('1', '.', view=True)
+
+
