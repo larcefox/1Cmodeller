@@ -35,7 +35,7 @@ class MainObjects(ShowBase):
             mainObjs1C, objs1C = dataPars.csv_dict_reader(f_obj)
 
         for key in list(mainObjs1C.keys()):
-            randx, randy, randz = random.randint(-5, 5), random.randint(85, 95), random.randint(-5, 5)
+            randx, randy, randz = random.randint(-5, 5), 90, random.randint(-5, 5)
             self.mainVisualObj[key] = self.loader.loadModel("1Cregistr.egg")
             self.mainVisualObj[key].setHpr(randx, randy, randz)
             self.mainVisualObj[key].setPos(self.x, self.y, self.z)
@@ -49,7 +49,7 @@ class MainObjects(ShowBase):
             self.text[key].setText(key)
             self.mainRegistryText[key] = self.aspect2d.attachNewNode(self.text[key])
             self.mainRegistryText[key].setScale(1)
-            self.mainRegistryText[key].setPos(-4, 0, 1)
+            self.mainRegistryText[key].setPos(-4, 0, 0.5)
             self.mainRegistryText[key].setHpr(0, randy+180, 0)
             self.mainRegistryText[key].reparentTo(self.mainVisualObj[key])
             print(key)

@@ -12,30 +12,20 @@ def csv_dict_reader(file_obj):
     objects1C = dict()
 
     reader = csv.DictReader(file_obj, delimiter='	')
+
     for lineNumber, line in enumerate(reader):
 
-        print (lineNumber)
-        mainObjects1CName = re.match(r'- ',
-                                     str(line["Уровень3"]))  # Ннаименование объектов системы начинается с символов "- "
-
-        # if (str(line["Уровень4"])):  # пропарсить свойства объектов
-            # print(str(line["Уровень4"]), lineCounter)
-
+        mainObjects1CName = re.match(r'- ', str(line["Уровень3"]))  # Ннаименование объектов системы начинается с символов "- "
         if mainObjects1CName:
             # Собирает наименования состава объектов конфигурации как ключи и значения словаря как родителя
-            mainObjects1C[(str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')])] = MainObject1C(str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')], "Конфигурация", lineNumber)
+            mainObjects1C[(str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')])] = \
+                MainObject1C(str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')], "Конфигурация", lineNumber)
 
             objects1C[(str(line["Уровень3"])[str(line["Уровень3"]).find('.') + 1:])] = \
                 Object1C(
                     str(line["Уровень3"])[str(line["Уровень3"]).find('.') + 1:],
                     str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')],
                     lineNumber)
-
-            # objects1C[(str(line["Уровень3"])[str(line["Уровень3"]).find('.') + 1:])] = \
-            #     Object1C(
-            #         str(line["Уровень3"])[str(line["Уровень3"]).find('.') + 1:],
-            #         str(line["Уровень3"])[2:str(line["Уровень3"]).find('.')],
-            #         lineNumber)
 
     return mainObjects1C, objects1C
 
