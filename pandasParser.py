@@ -10,9 +10,12 @@ def pandasDataParce():
     configuration1C, mainObject1C, object1C, = dict(), dict(), dict()
     # iterestIn = ('Отчеты')
 
-    with codecs.open("ConfReport_190717.txt", 'rU', 'utf-16') as f_obj:
-        reader = csv.reader(f_obj, delimiter='	')
-        df = pd.DataFrame(reader)
+    try:
+        with codecs.open("ConfReport_190717.txt", 'rU', 'utf-16') as f_obj:
+            reader = csv.reader(f_obj, delimiter='	')
+            df = pd.DataFrame(reader)
+    except FileNotFoundError:
+        print('Config file not found.')
 
     for data in df[1]:
         if data:
